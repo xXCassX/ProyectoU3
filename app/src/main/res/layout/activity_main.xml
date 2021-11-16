@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="69dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginBottom="10dp"
+        android:text="Conjunto1"
+        app:layout_constraintBottom_toTopOf="@+id/c1"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="69dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="117dp"
+        android:layout_marginBottom="10dp"
+        android:text="Conjunto2"
+        app:layout_constraintBottom_toTopOf="@+id/c2"
+        app:layout_constraintStart_toEndOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/c1"
+        android:layout_width="151dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="92dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="A,B,C"
+        app:layout_constraintEnd_toStartOf="@+id/c2"
+        app:layout_constraintHorizontal_bias="0.477"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/c2"
+        android:layout_width="134dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="44dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="B,C,D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Presioname está"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/c1" />
+
+    <RadioGroup
+        android:id="@+id/gruporadio"
+        android:layout_width="227dp"
+        android:layout_height="289dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button">
+
+        <RadioButton
+            android:id="@+id/Union"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Unión" />
+
+        <RadioButton
+            android:id="@+id/Interseccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Intersección" />
+
+        <RadioButton
+            android:id="@+id/diferencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Diferencia" />
+
+        <RadioButton
+            android:id="@+id/complemento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Complemento" />
+
+        <RadioButton
+            android:id="@+id/pertenencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pertenencia" />
+
+        <RadioButton
+            android:id="@+id/igualdad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Igualdad" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/resultados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gruporadio" />
+</androidx.constraintlayout.widget.ConstraintLayout>
