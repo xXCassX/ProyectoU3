@@ -2,6 +2,7 @@ package com.example.proyectou3;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.BlendMode;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +17,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Button botones;
     EditText texto1, texto2, txtResultado;
     RadioButton ra1, ra2, ra3, ra4, ra5, ra6;
@@ -30,34 +31,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         botones = (Button) findViewById(R.id.button);
+        botones.setOnClickListener(this);
         texto1 = (EditText) findViewById(R.id.c1);
         texto2 = (EditText) findViewById(R.id.c2);
-        botones.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                int id=ra.getCheckedRadioButtonId();
-                Toast asdf=Toast.makeText(getApplicationContext(),""+id,Toast.LENGTH_LONG);
-                asdf.show();
-                CrearConjunto(texto1.getText().toString(),texto2.getText().toString());
-                try{
-                    switch (id){
-                        case R.id.Union: OpUnion(conjunto1,conjunto2); break;
-                        case R.id.Interseccion: OpInterseccion(conjunto1,conjunto2);break;
-                        case R.id.diferencia: OpDiferencia(conjunto1,conjunto2);break;
-                        case R.id.complemento: OpComplemento(conjunto1,conjunto2);break;
-                        case R.id.pertenencia: OpPertenencia(conjunto1,conjunto2);break;
-                        case R.id.igualdad: OpIgualdad(conjunto1,conjunto2);break;
-                    }
-
-                }catch (Exception e){
-                    String cade = "chingo su madre" + e.getCause();
-                    Toast notifica = Toast.makeText(getApplicationContext(),cade,Toast.LENGTH_LONG);
-                    notifica.show();
-                }
-            }
-        });
-
 
         txtResultado = (EditText) findViewById(R.id.resultados);
         ra = (RadioGroup) findViewById(R.id.gruporadio);
@@ -69,97 +45,88 @@ public class MainActivity extends AppCompatActivity {
         ra6 = (RadioButton) findViewById(R.id.igualdad);
     }
 
+    @Override
+    public void onClick(View view){
+        try {
+            CrearConjunto(texto1.getText().toString(), texto2.getText().toString());
+
+            if (ra1.isChecked()) {
+                OpUnion(conjunto1, conjunto2);
+            } else if (ra2.isChecked()) {
+                OpInterseccion(conjunto1, conjunto2);
+            } else if (ra3.isChecked()) {
+                OpDiferencia(conjunto1, conjunto2);
+            } else if (ra4.isChecked()) {
+                OpComplemento(conjunto1, conjunto2);
+            } else if (ra5.isChecked()) {
+                OpPertenencia(conjunto1, conjunto2);
+            } else if (ra6.isChecked()) {
+                OpIgualdad(conjunto1, conjunto2);
+            }
+        }catch (Exception e){
+            Toast toast=Toast.makeText(getApplicationContext(),"Causa + "+e.getCause(), Toast.LENGTH_LONG);
+        }
+    }
+
 
     public void CrearConjunto(String cade1, String cade2){
         conjunto1 = cade1.split(","); //Split: se separara la cadena por comas
         conjunto2 = cade2.split(",");
+        String cadena="";
+        for (int i=0;i<conjunto1.length;i++){
+            cadena=cadena+conjunto1[i].toString();
+        }
+
     }
 
-   /* public void OpUnion(String[] cade1, String[] cade2){
-        resultado=new ArrayList<String>();
-        for(int i=0;i<cade1.length;i++){
-            resultado.add(cade1[i]);
-        }
-        for (int i=0;i<cade2.length;i++){
-            for(int j=i;j< cade1.length;j++){
-                if(cade2[i]!=cade1[j]){
-
-                }
-            }
-        }
-    }*/
 
     public void OpUnion(String[] cade1, String[] cade2){
+        String cadena="";
         resultado=new ArrayList<String>();
         Set res= new TreeSet(Arrays.asList(cade1));
         res.addAll(Arrays.asList(cade2));
-        resultado= (List<String>) res;
-
-        String cadena = "";
-        for(int i=0; i<resultado.size(); i++){
-            cadena = cadena + resultado.toString();
-        }
+        cadena =res.toString();
         txtResultado.setText(cadena);
     }
 
     public void OpInterseccion(String[] cade1, String[] cade2){
-        resultado=new ArrayList<String>();
+        String cadena="";
         Set res= new TreeSet(Arrays.asList(cade1));
         res.retainAll(Arrays.asList(cade2));
-        resultado= (List<String>) res;
-
-        String cadena = "";
-        for(int i=0; i<resultado.size(); i++){
-            cadena = cadena + resultado.toString();
-        }
+        cadena=res.toString();
         txtResultado.setText(cadena);
     }
 
     public void OpDiferencia(String[] cade1, String[] cade2){
-        resultado=new ArrayList<String>();
+        String cadena="";
         Set res= new TreeSet(Arrays.asList(cade1));
         res.removeAll(Arrays.asList(cade2));
-        resultado= (List<String>) res;
-
-        String cadena = "";
-        for(int i=0; i<resultado.size(); i++){
-            cadena = cadena + resultado.toString();
-        }
+        cadena=res.toString();
         txtResultado.setText(cadena);
     }
 
     public void OpComplemento(String[] cade1, String[] cade2){
-        resultado=new ArrayList<String>();
+        String cadena="";
         Set res= new TreeSet(Arrays.asList(cade1));
         res.addAll(Arrays.asList(cade2));
         res.removeAll(Arrays.asList(cade1));
-
-        resultado= (List<String>) res;
-
-        String cadena = "";
-        for(int i=0; i<resultado.size(); i++){
-            cadena = cadena + resultado.toString();
-        }
+        cadena=res.toString();
         txtResultado.setText("Los elementos "+cadena+" del conjunto B son complementos del conjunto A");
     }
 
     public void OpPertenencia(String[] cade1, String[] cade2){
-        resultado=new ArrayList<String>();
+        String cadena="";
         Set res= new TreeSet(Arrays.asList(cade1));
         res.retainAll(Arrays.asList(cade2));
-        resultado= (List<String>) res;
-
-        String cadena = "";
-        for(int i=0; i<resultado.size(); i++){
-            cadena = cadena + resultado.toString();
-        }
-        txtResultado.setText("Los elemntos "+cadena+" del conjunto B pertenecen a el conjunto A");
+        cadena=res.toString();
+        txtResultado.setText("Los elemntos "+cadena+" del conjunto B pertenecen al conjunto A");
     }
 
     public void OpIgualdad(String[] cade1, String[] cade2){
-        resultado=new ArrayList<String>();
-        Set res= new TreeSet(Arrays.asList(cade1));
-        if(res.equals(Arrays.asList(cade2))){
+
+        Set res= new TreeSet(Arrays.asList(cade1)), cad2=new TreeSet(Arrays.asList(cade2));
+
+        if(res.equals(cad2)){
             txtResultado.setText("Son iguales");
         }else{
             txtResultado.setText("Son diferentes");
