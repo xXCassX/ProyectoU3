@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup ra;
     String[] conjunto1, conjunto2;
     List<String> resultado;
+    //ghfghfgh
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
