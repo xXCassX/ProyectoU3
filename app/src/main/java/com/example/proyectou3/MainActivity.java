@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,12 +20,12 @@ import java.util.TreeSet;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     Button botones;
-    EditText texto1, texto2, txtResultado;
+    EditText texto1, texto2;
+    TextView txtResultado;
     RadioButton ra1, ra2, ra3, ra4, ra5, ra6;
     RadioGroup ra;
     String[] conjunto1, conjunto2;
     List<String> resultado;
-    //ghfghfgh
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         texto1 = (EditText) findViewById(R.id.c1);
         texto2 = (EditText) findViewById(R.id.c2);
 
-        txtResultado = (EditText) findViewById(R.id.resultados);
+        txtResultado = (TextView) findViewById(R.id.resultados);
         ra = (RadioGroup) findViewById(R.id.gruporadio);
         ra1 = (RadioButton) findViewById(R.id.Union);
         ra2 = (RadioButton) findViewById(R.id.Interseccion);
