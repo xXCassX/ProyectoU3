@@ -33,6 +33,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="92dp"
         android:ems="10"
+        android:text="A,B,C,D"
         app:layout_constraintEnd_toStartOf="@+id/c2"
         app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +47,7 @@
         android:layout_marginTop="92dp"
         android:layout_marginEnd="44dp"
         android:ems="10"
+        android:text="C,D,F,G"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />

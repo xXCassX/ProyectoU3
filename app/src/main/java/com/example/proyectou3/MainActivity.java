@@ -100,10 +100,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void OpDiferencia(String[] cade1, String[] cade2){
         String cadena="";
+        String cadena2="";
         Set res= new TreeSet(Arrays.asList(cade1));
         res.removeAll(Arrays.asList(cade2));
         cadena=res.toString();
-        txtResultado.setText(cadena);
+        Set res2 = new TreeSet(Arrays.asList(cade2));
+        res2.removeAll(Arrays.asList(cade1));
+        cadena2=res2.toString();
+        txtResultado.setText(cadena + cadena2);
     }
 
     public void OpComplemento(String[] cade1, String[] cade2){
